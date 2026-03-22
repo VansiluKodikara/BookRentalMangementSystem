@@ -10,8 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="txtId" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.customer.CustomerRegistrationController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ced6e0;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.customer.CustomerRegistrationController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3a3939" height="57.0" stroke="#3a3939" strokeType="INSIDE" width="600.0" />
       <Label layoutX="194.0" layoutY="14.0" text="Customer Registration" textFill="WHITE">
@@ -19,26 +18,26 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="14.0" layoutY="80.0" prefHeight="25.0" prefWidth="95.0" promptText="ID" />
-      <JFXTextField layoutX="278.0" layoutY="80.0" promptText="Name" />
-      <ComboBox layoutX="146.0" layoutY="82.0" prefHeight="25.0" prefWidth="95.0" promptText="Title" />
-      <JFXTextField layoutX="452.0" layoutY="80.0" promptText="Telephone Number" />
-      <Button layoutX="466.0" layoutY="133.0" mnemonicParsing="false" style="-fx-background-color: #F27B21;" text="Back" textAlignment="CENTER" textFill="WHITE">
+      <JFXTextField fx:id="txtId" layoutX="14.0" layoutY="80.0" prefHeight="25.0" prefWidth="95.0" promptText="ID" />
+      <JFXTextField fx:id="txtName" layoutX="278.0" layoutY="80.0" promptText="Name" />
+      <ComboBox fx:id="cmbTitle" layoutX="146.0" layoutY="82.0" prefHeight="25.0" prefWidth="95.0" promptText="Title" />
+      <JFXTextField fx:id="txtTelNumber" layoutX="452.0" layoutY="80.0" promptText="Telephone Number" />
+      <Button layoutX="466.0" layoutY="133.0" mnemonicParsing="false" onAction="#btnCustBackOnAction" style="-fx-background-color: #F27B21;" text="Back" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="524.0" layoutY="133.0" mnemonicParsing="false" style="-fx-background-color: #059D0F;" text="Register" textAlignment="CENTER" textFill="WHITE">
+      <Button layoutX="524.0" layoutY="133.0" mnemonicParsing="false" onAction="#btnCustRegisterOnAction" style="-fx-background-color: #059D0F;" text="Register" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <TableView layoutX="23.0" layoutY="186.0" prefHeight="200.0" prefWidth="553.0">
+      <TableView fx:id="tblCustomer" layoutX="23.0" layoutY="186.0" prefHeight="200.0" prefWidth="553.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="88.66665649414062" text="Title" />
-            <TableColumn prefWidth="192.0" text="Name" />
-            <TableColumn prefWidth="194.666748046875" text="Telephone Number" />
+          <TableColumn fx:id="colCustId" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="colCustTitle" prefWidth="88.66665649414062" text="Title" />
+            <TableColumn fx:id="colCustName" prefWidth="192.0" text="Name" />
+            <TableColumn fx:id="colCustTelNum" prefWidth="194.666748046875" text="Telephone Number" />
         </columns>
       </TableView>
    </children>
