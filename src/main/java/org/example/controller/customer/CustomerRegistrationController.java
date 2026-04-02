@@ -9,14 +9,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.example.model.CustomerRegistration;
-import org.example.tm.CustomerTM;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class CustomerRegistrationController implements Initializable{
+public class CustomerRegistrationController {
 
     @FXML
     private JFXTextField txtId;
@@ -45,41 +44,36 @@ public class CustomerRegistrationController implements Initializable{
     @FXML
     private TableView tblCustomer;
 
-    public void initialize(URL url, ResourceBundle resourceBundle){
 
-        colCustId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colCustTitle.setCellValueFactory( new PropertyValueFactory<>("title"));
-        colCustName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colCustTelNum.setCellValueFactory(new PropertyValueFactory<>("telNumber"));
-
-        cmbTitle.setItems(
-                FXCollections.observableArrayList(
-                        Arrays.asList("Mr", "Mrs", "Miss")
-                )
-        );
-
-        tblCustomer.getSelectionModel().selectedItemProperty().addListener((observableValue, o, t1) -> {
-            assert t1 !=null;
-
-            CustomerTM customerTM=(CustomerTM) t1;
-
-            CustomerRegistration customerRegistration=new CustomerRegistration(
-                    customerTM.getId(),
-                    customerTM.getTitle(),
-                    customerTM.getName(),
-                    customerTM.getTelNumber()
-            );
-
-
-        });
+    @FXML
+     void btnCustBackOnAction(ActionEvent actionEvent) {
     }
 
-
-
-    public void btnCustBackOnAction(ActionEvent actionEvent) {
-    }
-
+    @FXML
     public void btnCustRegisterOnAction(ActionEvent actionEvent) {
 
+    }
+
+    private void setTextToValues(){
+
+    }
+
+    public void loadTable() {
+
+    }
+
+    public void btnBackOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnRegisterOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnSearchOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnDeleteOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnReloadOnAction(ActionEvent actionEvent) {
     }
 }
