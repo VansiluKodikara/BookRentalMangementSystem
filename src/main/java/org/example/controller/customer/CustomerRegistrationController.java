@@ -29,19 +29,19 @@ public class CustomerRegistrationController {
     private JFXComboBox<?> cmbTitle;
 
     @FXML
-    private TableColumn<?, ?> colCustId;
+    private TableColumn colCustId;
 
     @FXML
-    private TableColumn<?, ?> colCustName;
+    private TableColumn colCustName;
 
     @FXML
-    private TableColumn<?, ?> colCustTelNum;
+    private TableColumn colCustTelNum;
 
     @FXML
-    private TableColumn<?, ?> colCustTitle;
+    private TableColumn colCustTitle;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private TableView tblCustomer;
 
     @FXML
     private JFXTextField txtId;
