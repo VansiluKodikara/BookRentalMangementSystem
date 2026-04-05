@@ -12,16 +12,16 @@ public class CustomerTM {
     private String id;
     private String title;
     private String name;
-    private String telephoneNum;
+    private String telNum;
 
-    public CustomerTM(String id, String title, String name, String telephoneNum) {
+    public CustomerTM(String id, String title, String name, String telNum) {
         this.id = id;
         this.title = title;
         this.name = name;
-        this.telephoneNum = telephoneNum;
+        this.telNum = telNum;
     }
 
     public String getTelephoneNum() {
-        return telephoneNum;
+        return telNum;
     }
 }

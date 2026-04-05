@@ -6,16 +6,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.model.tm.CustomerTM;
 
+import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class CustomerRegistrationController {
+public class CustomerRegistrationController implements Initializable {
 
     @FXML
     private Button btnBack;
@@ -76,7 +79,7 @@ public class CustomerRegistrationController {
 
     @FXML
     void btnReloadOnAction(ActionEvent event) {
-        loadTable();
+
     }
 
     @FXML
@@ -89,7 +92,7 @@ public class CustomerRegistrationController {
         colCustId.setCellValueFactory(new PropertyValueFactory<>("id"));
         colCustTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
         colCustName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colCustTelNum.setCellValueFactory(new PropertyValueFactory<>("telNumber"));
+        colCustTelNum.setCellValueFactory(new PropertyValueFactory<>("telNum"));
         try {
             Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/bookrent", "root", "12345");
 
@@ -118,4 +121,8 @@ public class CustomerRegistrationController {
         }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle){
+        loadTable();
+    }
 }

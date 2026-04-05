@@ -6,11 +6,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ced6e0;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.customer.CustomerRegistrationController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#3a3939" height="57.0" stroke="#3a3939" strokeType="INSIDE" width="600.0" />
@@ -38,11 +38,7 @@
           <TableColumn fx:id="colCustId" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="colCustTitle" prefWidth="88.66665649414062" text="Title" />
             <TableColumn fx:id="colCustName" prefWidth="192.0" text="Name" />
-            <TableColumn fx:id="colCustTelNum" prefWidth="194.666748046875" text="Telephone Number">
-                <cellValueFactory>
-                    <PropertyValueFactory property="telephoneNum" />
-                </cellValueFactory>
-            </TableColumn>
+            <TableColumn fx:id="colCustTelNum" prefWidth="194.666748046875" text="Telephone Number" />
         </columns>
       </TableView>
       <Button fx:id="btnSearch" layoutX="329.0" layoutY="133.0" mnemonicParsing="false" onAction="#btnSearchOnAction" style="-fx-background-color: #3498db;" text="Search" textFill="WHITE">
