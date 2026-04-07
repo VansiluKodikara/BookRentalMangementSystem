@@ -7,15 +7,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.model.CustomerRegistration;
 import org.example.model.tm.CustomerTM;
 
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class CustomerRegistrationController implements Initializable {
@@ -36,7 +39,7 @@ public class CustomerRegistrationController implements Initializable {
     private Button btnSearch;
 
     @FXML
-    private JFXComboBox<?> cmbTitle;
+    private JFXComboBox<String> cmbTitle;
 
     @FXML
     private TableColumn colCustId;
@@ -70,11 +73,42 @@ public class CustomerRegistrationController implements Initializable {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
+
     }
 
     @FXML
     void btnRegisterOnAction(ActionEvent event) {
 
+        String id = txtId.getText();
+        String title = cmbTitle.getValue().toString();
+        String name = txtName.getText();
+        String telNum = txtTelNumber.getText();
+
+        CustomerRegistration customerRegistration = new CustomerRegistration(id, title,name,telNum);
+
+        System.out.println(customerRegistration);
+
+        try {
+
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookrent", "root", "12345");
+
+            PreparedStatement psTm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?)");
+
+            psTm.setString(1, customerRegistration.getId());
+            psTm.setString(2, customerRegistration.getTitle());
+            psTm.setString(3, customerRegistration.getName());
+            psTm.setString(4, customerRegistration.getTelNum());
+
+            if(psTm.executeUpdate()>0){
+                new Alert(Alert.AlertType.INFORMATION, "Customer has been registered successfully").show();
+                //loadTable();
+            }else {
+                new Alert(Alert.AlertType.ERROR, "Customer has not been registered successfully").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -84,6 +118,23 @@ public class CustomerRegistrationController implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
+
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookrent", "root", "12345");
+
+            PreparedStatement psTm = connection.prepareStatement("SELECT * FROM customer WHERE CustID = ?");
+
+            psTm.setString(1, txtId.getText());
+
+            ResultSet resultSet = psTm.executeQuery();
+
+            resultSet.next();
+
+            //resultSet.getString()
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -123,6 +174,11 @@ public class CustomerRegistrationController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
+
+        cmbTitle.setItems(FXCollections.observableArrayList(
+                Arrays.asList("Mr", "Mrs", "Miss")
+        ));
+
         loadTable();
     }
 }
