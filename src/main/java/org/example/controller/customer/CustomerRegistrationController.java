@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.db.DBConnection;
 import org.example.model.CustomerRegistration;
 import org.example.model.tm.CustomerTM;
 
@@ -73,7 +74,6 @@ public class CustomerRegistrationController implements Initializable {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
-
     }
 
     @FXML
@@ -90,7 +90,7 @@ public class CustomerRegistrationController implements Initializable {
 
         try {
 
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookrent", "root", "12345");
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement psTm = connection.prepareStatement("INSERT INTO customer VALUES (?,?,?,?)");
 
@@ -120,7 +120,7 @@ public class CustomerRegistrationController implements Initializable {
     void btnSearchOnAction(ActionEvent event) {
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookrent", "root", "12345");
+            Connection connection = DBConnection.getInstance().getConnection();
 
             PreparedStatement psTm = connection.prepareStatement("SELECT * FROM customer WHERE CustID = ?");
 
@@ -130,12 +130,26 @@ public class CustomerRegistrationController implements Initializable {
 
             resultSet.next();
 
-            //resultSet.getString()
+            CustomerRegistration customerRegistration = new CustomerRegistration(
+                     resultSet.getString(1),
+                     resultSet.getString(2),
+                     resultSet.getString(3),
+                     resultSet.getString(4)
+            );
+
+            setTextToValues(customerRegistration);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
+    }
+
+    private void setTextToValues(CustomerRegistration customerRegistration){
+        txtId.setText(customerRegistration.getId());
+        cmbTitle.setValue(customerRegistration.getTitle());
+        txtName.setText(customerRegistration.getName());
+        txtTelNumber.setText(customerRegistration.getTelNum());
     }
 
     public void loadTable(){
@@ -145,7 +159,7 @@ public class CustomerRegistrationController implements Initializable {
         colCustName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colCustTelNum.setCellValueFactory(new PropertyValueFactory<>("telNum"));
         try {
-            Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/bookrent", "root", "12345");
+            Connection connection = DBConnection.getInstance().getConnection();
 
             Statement statement=connection.createStatement();
 
