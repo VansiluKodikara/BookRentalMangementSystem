@@ -1,0 +1,51 @@
+/* Force the whole TableView to be transparent */
+#tblCustomer,
+#tblCustomer .table-view,
+#tblCustomer .viewport,
+#tblCustomer .virtual-flow {
+    -fx-background-color: transparent !important;
+    -fx-background-insets: 0;
+    -fx-border-color: #273c75;
+}
+
+/* Rows - completely transparent */
+#tblCustomer .table-row-cell,
+#tblCustomer .table-row-cell:filled,
+#tblCustomer .table-row-cell:even,
+#tblCustomer .table-row-cell:odd,
+#tblCustomer .table-row-cell:selected {
+    -fx-background-color: transparent !important;
+    -fx-border-color: #273c75;
+    -fx-text-fill: #000000;           /* keep text white */
+}
+
+/* Cells inside the rows */
+#tblCustomer .table-cell {
+    -fx-background-color: transparent !important;
+    -fx-border-color: #273c75;
+    -fx-text-fill: #000000;
+}
+
+/* Remove any default borders or lines */
+#tblCustomer {
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: #273c75;
+}
+
+/* Column headers - keep them slightly visible (recommended for readability) */
+#tblCustomer .column-header-background,
+#tblCustomer .column-header,
+#tblCustomer .filler,
+#tblCustomer .corner {
+    -fx-background-color: rgba(40, 40, 40, 0.9);   /* semi-transparent dark */
+    -fx-text-fill: #000000;
+}
+
+/* header transparent */
+
+#tblCustomer .column-header-background,
+#tblCustomer .column-header,
+#tblCustomer .filler,
+#tblCustomer .corner {
+    -fx-background-color: transparent !important;
+}
