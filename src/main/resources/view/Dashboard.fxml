@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#6e6c6c" height="400.0" stroke="TRANSPARENT" strokeType="INSIDE" width="136.0" />
+      <ImageView fitHeight="136.0" fitWidth="183.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logo.jpg" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnAdmin" layoutX="36.0" layoutY="187.0" onAction="#btnAdminOnAction" style="-fx-background-color: #2C2C2C;" text="Admin" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="btnStaff" layoutX="41.0" layoutY="309.0" onAction="#btnStaffOnAction" style="-fx-background-color: #2C2C2C;" text="Staff" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane fx:id="dashRoot" layoutX="136.0" prefHeight="400.0" prefWidth="600.0" />
+   </children>
+</AnchorPane>
