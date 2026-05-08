@@ -1,6 +1,8 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import controller.landingPage.AdminLandingPgController;
+import holder.PaneHolder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,9 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+
+import static holder.PaneHolder.getPane;
+import static holder.PaneHolder.getPane;
 
 public class DashboardController {
 
@@ -21,18 +26,24 @@ public class DashboardController {
     @FXML
     private AnchorPane dashRoot;
 
+    public void initialize(){
+        PaneHolder.setDashRoot(dashRoot);
+
+        System.out.println("Dashboard initialized and Pane Saved!");
+    }
+
     @FXML
     void btnAdminOnAction(ActionEvent event) {
 
         try {
             URL resource = this.getClass().getResource("/view/AdminLandingPage.fxml");
 
-            assert resource != null;
+            assert resource==null;
 
             Parent parent = FXMLLoader.load(resource);
 
-            dashRoot.getChildren().clear();
-            dashRoot.getChildren().add(parent);
+            PaneHolder.getPane().getChildren().clear();
+            PaneHolder.getPane().getChildren().add(parent);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -43,5 +54,4 @@ public class DashboardController {
     void btnStaffOnAction(ActionEvent event) {
 
     }
-
 }
