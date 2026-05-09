@@ -15,5 +15,5 @@ public class BookRegistration {
     private String title;
     private String author;
     private String genre;
-    private String price;
+    private Double price;
 }
