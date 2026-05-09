@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.BookRegistration;
+import model.CustomerRegistration;
 import model.tm.BookTM;
 import model.tm.CustomerTM;
 
@@ -95,6 +96,7 @@ public class BookRegistrationController implements Initializable {
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
+
     }
 
     @FXML
@@ -104,7 +106,7 @@ public class BookRegistrationController implements Initializable {
         String title = txtTitle.getText();
         String author = txtAuthor.getText();
         String genre = txtGenre.getText();
-        String price = txtPrice.getText();
+        Double price = Double.parseDouble(txtPrice.getText());
 
         BookRegistration bookRegistration = new BookRegistration(id, title, author, genre, price);
 
@@ -120,7 +122,7 @@ public class BookRegistrationController implements Initializable {
             psTm.setString(2, bookRegistration.getTitle());
             psTm.setString(3, bookRegistration.getAuthor());
             psTm.setString(4, bookRegistration.getGenre());
-            psTm.setString(5, bookRegistration.getPrice());
+            psTm.setDouble(5, bookRegistration.getPrice());
 
             if(psTm.executeUpdate()>0){
                 new Alert(Alert.AlertType.INFORMATION, "Book has been registered successfully").show();
@@ -141,7 +143,39 @@ public class BookRegistrationController implements Initializable {
 
     @FXML
     void btnSearchOnAction(ActionEvent event) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
 
+            PreparedStatement psTm = connection.prepareStatement("SELECT * FROM customer WHERE CustID = ?");
+
+            psTm.setString(1, txtId.getText());
+
+            ResultSet resultSet = psTm.executeQuery();
+
+            resultSet.next();
+
+            BookRegistration bookRegistration = new BookRegistration(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    resultSet.getString(4),
+                    resultSet.getDouble(5)
+            );
+
+            setTextToValues(bookRegistration);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    private void setTextToValues(BookRegistration bookRegistration) {
+        txtId.setText(bookRegistration.getId());
+        txtTitle.setText(bookRegistration.getTitle());
+        txtAuthor.setText(bookRegistration.getAuthor());
+        txtGenre.setText(bookRegistration.getGenre());
+        txtPrice.setText(bookRegistration.getPrice().toString());
     }
 
     public void loadTable(){
@@ -166,7 +200,7 @@ public class BookRegistrationController implements Initializable {
                         resultSet.getString(2),
                         resultSet.getString(3),
                         resultSet.getString(4),
-                        resultSet.getString(5)
+                        resultSet.getDouble(5)
                 );
                 bookTM.add(tm);
             }

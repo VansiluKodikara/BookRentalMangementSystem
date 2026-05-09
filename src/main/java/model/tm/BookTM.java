@@ -13,14 +13,13 @@ public class BookTM {
     private String title;
     private String author;
     private String genre;
-    private String price;
+    private Double price;
 
-    public BookTM(String id, String title, String author, String genre, String price){
+    public BookTM(String id, String title, String author, String genre, Double price){
         this.id=id;
         this.title=title;
         this.author=author;
         this.genre=genre;
         this.price=price;
-
     }
 }
